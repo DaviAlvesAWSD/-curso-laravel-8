@@ -9,6 +9,8 @@
 <body>
 
     @include('components.postComponents.post')
+    <hr>
     <a href="{{ route('posts.create') }}">Criar novo Post</a>
+
 </body>
 </html>
