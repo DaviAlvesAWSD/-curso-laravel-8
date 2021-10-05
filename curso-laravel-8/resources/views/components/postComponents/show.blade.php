@@ -1,3 +1,8 @@
+@extends('app')
+
+@section('title', 'Visualizar Posts')
+
+@section('content')
 <h1>Detalhes do Post {{ $post->title }}</h1>
 
 <ul>
@@ -9,4 +14,6 @@
     @csrf
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Deletar Post</button>
+    <a href="{{ route('posts.index') }}">voltar</a>
 </form>
+@endsection

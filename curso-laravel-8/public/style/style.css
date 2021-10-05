@@ -1,0 +1,180 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #e8eaf6;
+
+}
+
+.container{
+
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 100vh;
+
+    grid-template-areas: "c";
+
+    justify-items: center;
+    align-items: center;
+
+}
+
+.content{
+    grid-area:c;
+
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 40% 60% ;
+
+    grid-template-areas: "w r";
+
+    justify-items: center;
+    align-items: center;
+}
+
+.welcome{
+    position: relative;
+    grid-area: w;
+
+    width: 100%;
+    height: 100%;
+    background-color: #7159c1;
+    text-align: center;
+}
+
+.wel{
+    margin-top: 40%;
+    color: white;
+}
+
+.back{
+    background-color: #7159c1;
+}
+
+.btn{
+    text-decoration: none;
+    line-height: 60px;
+    padding: 10px 50px;
+    margin: 20px;
+    background-color:transparent;
+    color:white;
+    border: 1px solid white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn:hover{
+    background-color:#9b88dd;
+}
+
+
+.backR{
+    background-color: white;
+}
+
+.register{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 70%;
+
+    grid-template-areas: "c1"
+                         "c2";
+
+    grid-area: r;
+
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+}
+
+.titulo{
+    grid-area: c1;
+    background-color: white;
+}
+
+.reg{
+    position: relative;
+    grid-area: c2;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+
+}
+
+form{
+
+    width: 50%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+
+    margin-left: 15%;
+    background-color: white;
+    grid-template-areas: "nome"
+                         "email"
+                         "password"
+                         "confirm"
+                         "btn";
+
+    grid-gap: 20px;
+
+    justify-items: center;
+    align-items: center;
+
+}
+
+.name{
+    grid-area: nome;
+    background-color: white;
+}
+
+.email{
+    grid-area: email ;
+    background-color: white;
+}
+
+.password{
+    grid-area: password ;
+    background-color: white;
+}
+
+.confirm{
+    grid-area: confirm ;
+    background-color: white;
+}
+
+.btnRegister{
+    grid-area: btn;
+}
+
+.Input{
+    width: 200%;
+    height: 50px;
+    border: none;
+    padding: 15px;
+    background-color: rgba(236, 236, 236, 0.89);
+}
+
+.btnSubmit{
+    width: 150px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    margin-left: 50%;
+    background-color: #7159c1;
+
+}
+
+.btnSubmit:hover{
+    cursor: pointer;
+    background-color: #574494;
+}
+
+

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdatePost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Models\{
     Post
 };
@@ -18,7 +20,7 @@ class PostController extends Controller
 
         //dd($posts);
 
-        return view('index', compact('posts'));
+        return view('components.postComponents.post', compact('posts'));
     }
     // search
    /*
@@ -41,8 +43,17 @@ class PostController extends Controller
 
     public function store(StoreUpdatePost $request)
     {
+       $data = $request->all();
+       if ( $request->file('image')->isValid()) {
 
-        Post::create($request->all());
+
+            $nameFile = Str::of($request->title)->slug('-') . '.' .$request->image->getClientOriginalExtension();
+
+            $file = $request->file('image')->storeAs('posts', $nameFile);
+            $data['image'] = $file;
+        }
+
+        Post::create($data);
         return redirect()->route('posts.index')->with('sucesso','Post criado com sucesso.');
     }
 
@@ -73,9 +84,25 @@ class PostController extends Controller
 
     public function update(StoreUpdatePost $request,$id)
     {
+
+
         $post = Post::find($id);
         if(isset($post)){
-            if( $post->update($request->all())){
+
+            $data = $request->all();
+            if ($request->file('image') && $request->file('image')->isValid()) {
+                if( Storage::exists($post->image)){
+                    Storage::delete($post->image);
+                }
+
+                 $nameFile = Str::of($request->title)->slug('-') . '.' .$request->image->getClientOriginalExtension();
+
+                 $file = $request->file('image')->storeAs('posts', $nameFile);
+                 $data['image'] = $file;
+             }
+
+
+            if( $post->update($data)){
                 return redirect()->route('posts.index')->with('sucesso','Post editado com sucesso.');
             }
         }
@@ -90,6 +117,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         if(isset($post)){
+           if( Storage::exists($post->image)){
+                Storage::delete($post->image);
+           }
            $destroy = $post->delete();
            if(isset($destroy)){
                 return redirect()->route('posts.index')->with('sucesso','Post deletado com sucesso.');
